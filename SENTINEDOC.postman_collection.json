@@ -1,0 +1,255 @@
+{
+  "info": {
+    "_postman_id": "cac7e8e2-59de-4610-bcf7-65318baa814d",
+    "name": "SENTINEDOC",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53899308",
+    "_collection_link": "https://go.postman.co/collection/53899308-cac7e8e2-59de-4610-bcf7-65318baa814d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "health",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "upload",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "e1287278-9563-4369-a173-c6f8764788f1",
+              "src": "postman-cloud:///1f1771af-efbb-45c0-b346-887f4f28471d"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8000/upload",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "score",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "e1287278-9563-4369-a173-c6f8764788f1",
+              "src": "postman-cloud:///1f1771af-efbb-45c0-b346-887f4f28471d"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8000/score/066779c8-5636-4aac-826b-cd458407fc23",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "score",
+            "066779c8-5636-4aac-826b-cd458407fc23"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "results(trustworthy=true)",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "e1287278-9563-4369-a173-c6f8764788f1",
+              "src": "postman-cloud:///1f1771af-efbb-45c0-b346-887f4f28471d"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8000/results/066779c8-5636-4aac-826b-cd458407fc23?only_trustworthy=True",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "results",
+            "066779c8-5636-4aac-826b-cd458407fc23"
+          ],
+          "query": [
+            {
+              "key": "only_trustworthy",
+              "value": "True",
+              "type": "text"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "result(trustworthy=false)",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/results/066779c8-5636-4aac-826b-cd458407fc23",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "results",
+            "066779c8-5636-4aac-826b-cd458407fc23"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "register",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"ayan123\",\n  \"email\": \"ayan@example.com\",\n  \"password\": \"Test@1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": " {\n  \"username\": \"ayan123\",\n  \"password\": \"Test@1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "profile",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "change-password",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "logout",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
