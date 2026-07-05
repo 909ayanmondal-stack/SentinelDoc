@@ -1,4 +1,4 @@
-# SentinelDoc
+# SentineDoc
 
 An intelligent document safety and trust-scoring pipeline. SentinelDoc ingests documents (TXT, PDF, DOCX), breaks them into chunks, and runs each chunk through a multi-agent LLM pipeline that cleans the text, detects PII/security threats/abusive content, and assigns a trust score — all backed by JWT-secured user authentication.
 
