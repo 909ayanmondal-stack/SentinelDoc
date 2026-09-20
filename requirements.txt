@@ -1,0 +1,16 @@
+pandas
+fastapi
+uvicorn[standard]
+pymongo
+python-dotenv
+pydantic-settings
+langchain-core
+langchain-community
+langchain-openai
+python-multipart
+pymupdf
+python-docx
+pydantic[email]
+passlib[bcrypt]
+python-jose[cryptography]
+bcrypt==4.0.1
