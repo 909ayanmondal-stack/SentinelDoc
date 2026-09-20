@@ -35,3 +35,93 @@ Most student projects are CRUD apps. SentinelDoc isn't — it's a real, working 
 ---
 
 ## Architecture
+
+```
+React Frontend  ->  FastAPI Backend  ->  Extract + Chunk Document
+                                              |
+                                     Cleaner Agent (LangChain)
+                                              |
+                                Guardrail/Scoring Agent -> Trust Score
+                                              |
+                                          MongoDB
+                                              |
+                                    Results shown in UI
+```
+
+---
+
+## Project Structure
+
+```
+SentinelDoc/
+├── sentineldoc-frontend/    # React 19 + Vite frontend
+│   └── src/{api,components,context,pages}
+├── app/                     # FastAPI backend
+│   ├── agents/              # Cleaner + Guardrail agents
+│   ├── api/                 # auth, upload, score, results
+│   ├── core/                # config, LLM factory
+│   ├── models/
+│   └── services/
+├── docker-compose.yml
+└── requirements.txt
+```
+
+---
+
+## Quick Start
+
+### Backend
+
+```bash
+git clone https://github.com/909ayanmondal-stack/SentinelDoc.git
+cd SentinelDoc
+pip install -r requirements.txt
+# create .env with MONGODB_URL, OPENAI_API_KEY, SECRET_KEY etc.
+uvicorn app.main:app --reload
+```
+
+### Frontend
+
+```bash
+cd sentineldoc-frontend
+npm install
+cp .env.example .env
+npm run dev
+```
+
+### Or with Docker
+
+```bash
+docker compose up --build
+```
+
+Backend docs: `http://localhost:8000/docs`
+
+---
+
+## API Overview
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/auth/register` | Register user |
+| POST | `/auth/login` | Login, returns JWT |
+| POST | `/upload` | Upload document |
+| POST | `/score/{document_id}` | Run trust scoring |
+| GET | `/results/{document_id}` | Get scored chunks |
+
+---
+
+## Screenshots
+
+_Add 3-4 screenshots here: Login, Upload, Results page - recruiters look at this before reading code._
+
+```markdown
+![Results page](./sentineldoc-frontend/public/screenshots/results.png)
+```
+
+---
+
+## Author
+
+**Ayan Mondal** — MCA, NIT Kurukshetra
+[GitHub](https://github.com/909ayanmondal-stack) · [LinkedIn](#)
