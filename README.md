@@ -111,12 +111,6 @@ Backend docs: `http://localhost:8000/docs`
 
 ---
 
-
-
-```markdown
-![Results page](./sentineldoc-frontend/public/screenshots/results.png)
-```
-
 ---
 
 ## Author
