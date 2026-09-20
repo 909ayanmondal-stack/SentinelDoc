@@ -111,9 +111,7 @@ Backend docs: `http://localhost:8000/docs`
 
 ---
 
-## Screenshots
 
-_Add 3-4 screenshots here: Login, Upload, Results page - recruiters look at this before reading code._
 
 ```markdown
 ![Results page](./sentineldoc-frontend/public/screenshots/results.png)
