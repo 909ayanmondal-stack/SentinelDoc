@@ -1,154 +1,190 @@
-````markdown
 # SentinelDoc
 
-**AI-Powered Document Trust & Verification Platform**
+### AI-Powered Document Trust & Content Verification System
 
-SentinelDoc is an AI-powered document intelligence platform that analyzes uploaded documents and generates a trust score based on detected privacy risks, threats, and policy violations.
+SentinelDoc is an AI-powered document processing platform that analyzes uploaded documents and evaluates their trustworthiness through a multi-agent pipeline.
 
-The system combines **RAG, LLMs, multi-agent processing, vector search, and automated document analysis** to provide explainable document-level and chunk-level results.
-
----
-
-## 🚀 Key Features
-
-- 🔐 **JWT Authentication**
-  - User signup and login
-  - Protected routes
-  - Secure token-based authentication
-
-- 📄 **Document Processing**
-  - Supports TXT, PDF, and DOCX documents
-  - Document upload and validation
-  - Automated text extraction and processing
-
-- 🤖 **Multi-Agent AI Pipeline**
-  - Document cleaning
-  - Content moderation
-  - Trust-score generation
-  - Specialized AI agents for different analysis tasks
-
-- 🛡️ **Trust & Risk Analysis**
-  - Document-level trust score
-  - Chunk-level trust scores
-  - Violation and risk flags
-  - PII and threat detection
-  - Multilingual abusive-content detection
-
-- 🔎 **RAG & Semantic Search**
-  - Vector embeddings
-  - Context-aware retrieval
-  - ChromaDB-based semantic search
-
-- ⚡ **Async Processing**
-  - Concurrent document processing
-  - Efficient backend task execution
-
-- 🖥️ **Modern Frontend**
-  - React 19
-  - Responsive UI
-  - Protected routing
-  - Interactive document results
-
-- 🐳 **Containerized Deployment**
-  - Docker support
-  - Docker Compose configuration
-  - Environment-based configuration
+The system processes **TXT, PDF, and DOCX** documents and uses specialized AI agents to identify potentially sensitive, harmful, abusive, or suspicious content while producing structured trust scores and violation information.
 
 ---
 
-## 🏗️ System Architecture
+## 🚀 Features
+
+* 🔐 JWT-based authentication
+* 👤 User signup and login
+* 📄 TXT, PDF, and DOCX document upload
+* 🤖 Multi-agent AI processing pipeline
+* 🛡️ PII and sensitive-content detection
+* ⚠️ Threat and violation detection
+* 🌐 Multilingual abusive-content detection
+* 📊 Document trust scoring
+* 🔎 Chunk-level analysis
+* ⚡ Asynchronous/concurrent document processing
+* 🔌 Provider-agnostic LLM architecture
+* 🐳 Docker support
+* 📡 REST API integration
+
+---
+
+## 🧠 How SentinelDoc Works
 
 ```text
-                    ┌─────────────────────┐
-                    │     React 19 UI     │
-                    │  Vite + Tailwind    │
-                    └──────────┬──────────┘
-                               │
-                         REST API / JWT
-                               │
-                    ┌──────────▼──────────┐
-                    │    FastAPI Backend  │
-                    └──────────┬──────────┘
-                               │
-              ┌────────────────┼────────────────┐
-              │                │                │
-              ▼                ▼                ▼
-        Document Agent   Moderation Agent   Trust Agent
-              │                │                │
-              └────────────────┼────────────────┘
-                               │
-                    ┌──────────▼──────────┐
-                    │   RAG / Retrieval   │
-                    │   Vector Search     │
-                    └──────────┬──────────┘
-                               │
-                    ┌──────────▼──────────┐
-                    │ MongoDB / ChromaDB  │
-                    └─────────────────────┘
-````
+                    User
+                     │
+                     ▼
+              React Frontend
+                     │
+                     ▼
+              Upload Document
+                     │
+                     ▼
+             FastAPI Backend
+                     │
+                     ▼
+          Document Preprocessing
+                     │
+                     ▼
+             AI Agent Pipeline
+                     │
+        ┌────────────┼────────────┐
+        ▼            ▼            ▼
+      Agent 1      Agent 2      Agent 3
+      Cleaning    Moderation   Trust Score
+        │            │            │
+        └────────────┼────────────┘
+                     ▼
+              Analysis Results
+                     │
+                     ▼
+             React Results UI
+```
 
 ---
 
-## 🛠️ Tech Stack
+## 🤖 Multi-Agent Pipeline
 
-### Frontend
+SentinelDoc separates document analysis into specialized processing stages.
+
+### 1. Document Processing Agent
+
+Responsible for preparing uploaded documents for analysis.
+
+* Extracts document content
+* Processes supported file formats
+* Splits content into manageable chunks
+* Prepares content for downstream agents
+
+### 2. Moderation / Safety Agent
+
+Analyzes document content for potentially problematic information.
+
+Detection can include:
+
+* Personally Identifiable Information (PII)
+* Threat-related content
+* Abusive language
+* Other configured policy violations
+* Multilingual problematic content
+
+### 3. Trust Analysis Agent
+
+Combines the analysis results to produce structured trust information for the document and its individual chunks.
+
+---
+
+# 🏗️ Architecture
+
+```text
+┌─────────────────────────────────────┐
+│             React 19 UI             │
+│                                     │
+│ Login │ Upload │ Dashboard │ Results│
+└──────────────────┬──────────────────┘
+                   │
+                   │ HTTP / REST API
+                   ▼
+┌─────────────────────────────────────┐
+│              FastAPI                │
+│                                     │
+│ Authentication │ Documents │ Agents │
+└───────────────┬───────────┬─────────┘
+                │           │
+                ▼           ▼
+        ┌────────────┐  ┌──────────────┐
+        │  MongoDB   │  │  LangChain   │
+        │  Database  │  │  LLM Layer   │
+        └────────────┘  └──────┬───────┘
+                               │
+                               ▼
+                    ┌──────────────────┐
+                    │ Multi-Agent      │
+                    │ Processing       │
+                    └──────────────────┘
+```
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
 
 * React 19
 * Vite
 * React Router
-* Tailwind CSS
+* Tailwind CSS v4
 * Axios
-* JavaScript / JSX
+* JavaScript
 
-### Backend
+## Backend
 
 * Python
 * FastAPI
+* Pydantic
 * LangChain
-* LangGraph
-* REST APIs
 * JWT Authentication
 * Async Processing
 
-### AI / GenAI
-
-* Large Language Models (LLMs)
-* Retrieval-Augmented Generation (RAG)
-* Multi-Agent Systems
-* Prompt Engineering
-* Vector Embeddings
-* Semantic Search
-
-### Databases
+## Database
 
 * MongoDB
-* ChromaDB
 
-### Tools & Deployment
+## AI
+
+* Large Language Models
+* LangChain
+* Multi-Agent Processing
+* Provider-agnostic LLM integration
+
+## DevOps
 
 * Docker
 * Docker Compose
 * Git
 * GitHub
-* Postman
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```text
 SentinelDoc/
 │
-├── app/                    # Backend application
+├── app/                       # Backend application
+│   ├── api/                   # API routes
+│   ├── agents/                # AI agents
+│   ├── models/                # Data models
+│   ├── services/              # Business logic
+│   └── ...
 │
-├── src/                    # React frontend
-│   ├── api/                # API services
-│   ├── components/         # Reusable UI components
-│   ├── context/            # Authentication state
-│   ├── pages/              # Application pages
-│   └── App.jsx             # Application routing
+├── src/                       # React frontend
+│   ├── api/                   # API communication
+│   ├── components/            # Reusable UI components
+│   ├── context/               # Authentication state
+│   ├── pages/                 # Application pages
+│   └── App.jsx                # Application routing
 │
-├── public/                 # Static frontend assets
+├── public/
+│
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
@@ -159,34 +195,196 @@ SentinelDoc/
 
 ---
 
-## ⚙️ Getting Started
+# 🔐 Authentication
 
-### Prerequisites
+SentinelDoc uses **JWT-based authentication**.
 
-Make sure the following are installed:
+### Authentication Flow
 
-* Python 3.10+
-* Node.js 18+
-* npm
-* MongoDB
-* Docker (optional)
+```text
+User
+ │
+ ▼
+Signup / Login
+ │
+ ▼
+FastAPI Authentication API
+ │
+ ▼
+JWT Access Token
+ │
+ ▼
+Frontend Authentication State
+ │
+ ▼
+Protected API Requests
+```
+
+Protected frontend routes prevent unauthenticated users from accessing application functionality.
+
+Axios interceptors are used to handle authenticated API communication.
 
 ---
 
-## 🔧 Backend Setup
+# 📄 Document Processing
 
-Clone the repository:
+Supported document formats include:
 
-```bash
-git clone https://github.com/909ayanmondal-stack/SentinelDoc.git
-cd SentinelDoc
+```text
+TXT
+PDF
+DOCX
 ```
 
-Create and activate a virtual environment:
+After uploading a document:
+
+```text
+Upload
+  ↓
+Content Extraction
+  ↓
+Chunking
+  ↓
+AI Analysis
+  ↓
+Violation Detection
+  ↓
+Trust Evaluation
+  ↓
+Results
+```
+
+---
+
+# 📊 Results
+
+The frontend provides structured analysis of processed documents.
+
+Results can include:
+
+* Overall trust information
+* Chunk-level trust scores
+* Detected violations
+* Flagged content
+* Content-analysis information
+
+This allows users to inspect not only the overall document result but also the individual sections responsible for detected issues.
+
+---
+
+# ⚡ Asynchronous Processing
+
+The backend is designed to support asynchronous document processing.
+
+This allows independent processing tasks to execute concurrently where appropriate, improving the efficiency of the document-analysis pipeline.
+
+---
+
+# 🌐 Frontend
+
+The frontend is built with React 19 and provides:
+
+* Authentication pages
+* Protected routes
+* Document upload interface
+* Dashboard
+* Processing interface
+* Results visualization
+* Responsive design
+
+### Frontend Flow
+
+```text
+Login
+  ↓
+Dashboard
+  ↓
+Upload Document
+  ↓
+AI Processing
+  ↓
+Results
+  ↓
+Chunk-Level Analysis
+```
+
+---
+
+# 🔌 API
+
+The frontend communicates with the FastAPI backend through REST APIs.
+
+The repository also includes:
+
+```text
+SENTINEDOC.postman_collection.json
+```
+
+which can be used for API testing with Postman.
+
+FastAPI provides interactive API documentation when the backend is running:
+
+```text
+http://localhost:8000/docs
+```
+
+---
+
+# ⚙️ Environment Setup
+
+Create a local environment file from the provided example:
+
+```bash
+cp .env.example .env
+```
+
+Configure the required values in `.env`.
+
+Example configuration may include:
+
+```env
+MONGODB_URL=your_mongodb_connection_string
+SECRET_KEY=your_secret_key
+JWT_ALGORITHM=HS256
+```
+
+Do **not** commit real credentials, API keys, or secrets to GitHub.
+
+---
+
+# 🚀 Running the Frontend
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The frontend will normally run at:
+
+```text
+http://localhost:5173
+```
+
+The backend must also be running for API functionality.
+
+---
+
+# 🐍 Running the Backend
+
+Create a virtual environment:
 
 ```bash
 python -m venv venv
 ```
+
+Activate it.
 
 ### macOS / Linux
 
@@ -206,60 +404,25 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Create your environment file:
+Start the FastAPI application using the appropriate application module:
 
 ```bash
-cp .env.example .env
+uvicorn <app_module>:app --reload
 ```
 
-Configure the required environment variables in `.env`.
-
-Start the FastAPI backend:
-
-```bash
-uvicorn app.main:app --reload
-```
-
-The backend will be available at:
+Then open:
 
 ```text
-http://localhost:8000
+http://localhost:8000/docs
 ```
+
+> Replace `<app_module>` with the actual module containing the FastAPI `app` instance.
 
 ---
 
-## 💻 Frontend Setup
+# 🐳 Docker
 
-Open another terminal:
-
-```bash
-cd SentinelDoc
-npm install
-```
-
-Create the environment file:
-
-```bash
-cp .env.example .env
-```
-
-Start the development server:
-
-```bash
-npm run dev
-```
-
-The frontend will be available at the URL displayed by Vite, usually:
-
-```text
-http://localhost:5173
-```
-
----
-
-## 🐳 Docker Setup
-
-SentinelDoc also includes Docker configuration for containerized execution.
+SentinelDoc includes Docker configuration for containerized development.
 
 Build and start the services:
 
@@ -275,49 +438,7 @@ docker compose down
 
 ---
 
-## 🔄 Application Workflow
-
-```text
-User Login / Signup
-        ↓
-Upload Document
-        ↓
-Document Validation
-        ↓
-Text Extraction & Cleaning
-        ↓
-Multi-Agent Processing
-        ↓
-Content & Risk Analysis
-        ↓
-RAG / Vector Retrieval
-        ↓
-Trust Score Generation
-        ↓
-Chunk-Level Results
-        ↓
-User Dashboard
-```
-
----
-
-## 🔐 Environment Variables
-
-Create a `.env` file based on `.env.example`.
-
-Example:
-
-```env
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-LLM_API_KEY=your_api_key
-```
-
-**Never commit real API keys, passwords, JWT secrets, or database credentials to GitHub.**
-
----
-
-## 🧪 API Testing
+# 🧪 API Testing
 
 The project includes a Postman collection:
 
@@ -325,44 +446,86 @@ The project includes a Postman collection:
 SENTINEDOC.postman_collection.json
 ```
 
-You can import this file into Postman to test the available backend APIs.
+You can import this file into Postman to test the backend APIs.
+
+FastAPI Swagger UI is also available at:
+
+```text
+http://localhost:8000/docs
+```
 
 ---
 
-## 📌 Use Cases
+# 🔒 Security Considerations
 
-SentinelDoc can be used for:
+The project incorporates several security-related mechanisms:
 
-* Document trust verification
-* Privacy and PII detection
-* Content moderation
-* Risk assessment
-* AI-assisted document analysis
-* Semantic document search
-* Automated document processing
+* JWT authentication
+* Protected routes
+* Password authentication
+* Environment-based secrets
+* API authentication
+* Input validation
+* Separation of frontend and backend responsibilities
+
+Production deployments should additionally use secure secret management, HTTPS, appropriate CORS configuration, rate limiting, and other production security controls.
 
 ---
 
-## 🔮 Future Improvements
+# 🔮 Future Improvements
 
-* Cloud deployment
-* Advanced document analytics
+Potential improvements include:
+
+* More advanced document understanding
+* Improved trust-scoring methodology
 * Additional document formats
-* Improved multilingual analysis
-* Real-time processing status
-* Advanced evaluation metrics
 * More specialized AI agents
+* RAG-based document knowledge retrieval
+* Improved multilingual analysis
+* Background job processing
+* Document history and versioning
+* Production deployment
+* Automated testing and CI/CD
+* More detailed analytics and reporting
 
 ---
 
-## 👨‍💻 Author
+# 🎯 What This Project Demonstrates
+
+SentinelDoc demonstrates practical experience with:
+
+* Full-stack application development
+* React frontend development
+* FastAPI backend development
+* REST API design
+* JWT authentication
+* MongoDB
+* LangChain
+* Multi-agent AI systems
+* LLM integration
+* Asynchronous processing
+* Document processing
+* Docker
+* API testing
+* Git/GitHub
+
+---
+
+# 👨‍💻 Author
 
 **Ayan Mondal**
 
-MCA Student
+Master of Computer Applications
 National Institute of Technology Kurukshetra
 
-* GitHub: https://github.com/909ayanmondal-stack
-* LinkedIn: [https://www.linkedin.com/in/ayan-mondal-74360a260](https://www.linkedin.com/in/ayan-mondal-74360a260 )
+GitHub:
+https://github.com/909ayanmondal-stack
+
+LinkedIn:
+https://www.linkedin.com/in/ayan-mondal-74360a260
 
 ---
+
+# 📄 License
+
+This project is developed for educational, research, and portfolio purposes.
